@@ -27,10 +27,10 @@ const Menubar = () => {
 	);
 	return (
 		<nav>
-			<div className="nav-wrapper">
-				<a href="#" className="brand-logo">
-					Logo
-				</a>
+			<div className="nav-wrapper container">
+				<Link to="/" className="brand-logo">
+					Strapi Restaurant
+				</Link>
 				<ul id="nav-mobile" className="right hide-on-med-and-down">
 					<li>
 						<Link to="/">Home</Link>

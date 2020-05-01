@@ -2,3 +2,45 @@ body {
 	margin: 0;
 	padding: 0;
 }
+h4 {
+	margin: 25px;
+	position: relative;
+	bottom: 3px;
+}
+.category {
+	display: flex;
+	align-items: center;
+	border: 1px solid black;
+	margin: 15px;
+}
+
+.collection-header {
+	flex-basis: 350px;
+}
+
+.categories_section {
+	background: #f2ed6f;
+	color: black;
+	min-height: 70vh;
+	margin: 10px;
+}
+
+.add_category_section {
+	background: #f2ed6f;
+	min-height: 50vh;
+	margin: 10px;
+	padding: 20px !important;
+}
+
+.collection-header {
+	display: flex;
+	align-items: center;
+}
+
+.collection-header .material-icons {
+	font-size: 35px;
+	cursor: pointer;
+}
+.collection-header .material-icons:hover {
+	color: red;
+}
