@@ -4,7 +4,7 @@ import AddCategory from "../components/category/AddCategory";
 
 const Home = () => {
 	return (
-		<div>
+		<div className="row">
 			<AddCategory />
 			<Categories />
 		</div>

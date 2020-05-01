@@ -23,14 +23,27 @@ const CategoryList = ({ category: { id, name, restaurants } }) => {
 	});
 
 	return (
-		<div onClick={() => deleteCategory()}>
-			{name}
-			<ul>
+		<div className="category">
+			<li className="collection-header">
+				<i className="material-icons" onClick={() => deleteCategory()}>
+					delete
+				</i>
+				<h4>{name}</h4>
+			</li>
+			<ul className="collection with-header">
 				{restaurants.map((restaurant) => (
-					<li>
-						Restaurant Name: {restaurant.name} - Restaurant Description:{" "}
-						{restaurant.description}
+					<li className="collection-item" key={restaurant.name}>
+						<div>
+							{restaurant.name}
+							<a href="#!" className="secondary-content">
+								{/* <i className="material-icons">delete</i> */}
+							</a>
+						</div>
 					</li>
+					// <li>
+					// 	Restaurant Name: {restaurant.name} - Restaurant Description:{" "}
+					// 	{restaurant.description}
+					// </li>
 				))}
 			</ul>
 		</div>

@@ -31,18 +31,17 @@ const CreateCategory = () => {
 	};
 
 	return (
-		<div className="row">
-			<div className="col m6 offset-m3">
-				<form onSubmit={handleSubmit}>
-					<label>Category Name</label>
-					<input
-						type="text"
-						value={name}
-						onChange={(e) => setName(e.target.value)}
-					/>
-					<button className="btn red">Add Category</button>
-				</form>
-			</div>
+		<div className="col m4 add_category_section">
+			<h4>Add New Category</h4>
+			<form onSubmit={handleSubmit}>
+				<label>Category Name</label>
+				<input
+					type="text"
+					value={name}
+					onChange={(e) => setName(e.target.value)}
+				/>
+				<button className="btn red">Add Category</button>
+			</form>
 		</div>
 	);
 };

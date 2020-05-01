@@ -8,9 +8,9 @@ const Categories = () => {
 	const { loading, data } = useQuery(GET_CATEGORIES);
 
 	return (
-		<div className="center">
-			<h2>Category List</h2>
-			<ul>
+		<div className="col m7 categories_section">
+			<h3>Category List</h3>
+			<ul className="">
 				{data ? (
 					data.categories.map((category) => (
 						<CategoryList key={category.id} category={category} />
