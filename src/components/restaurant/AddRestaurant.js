@@ -1,11 +1,17 @@
 import React, { useState } from "react";
-import { useMutation } from "@apollo/react-hooks";
-import { CREATE_RESTAURANT, GET_RESTAURANTS } from "../../graphql";
+import { useQuery, useMutation } from "@apollo/react-hooks";
+import {
+	CREATE_RESTAURANT,
+	GET_RESTAURANTS,
+	GET_CATEGORIES,
+} from "../../graphql";
 
 const AddRestaurants = () => {
 	const [name, setName] = useState("");
 	const [description, setDescription] = useState("");
 	const [categories, setCategories] = useState([]);
+
+	const { loading, data } = useQuery(GET_CATEGORIES);
 
 	const [createRestaurant] = useMutation(CREATE_RESTAURANT, {
 		variables: { name, description, categories },
@@ -14,8 +20,6 @@ const AddRestaurants = () => {
 		},
 		update(proxy, result) {
 			const data = proxy.readQuery({ query: GET_RESTAURANTS });
-			// console.log("Data:", data);
-			// console.log("Result:", result);
 
 			proxy.writeQuery({
 				query: GET_RESTAURANTS,
@@ -26,14 +30,23 @@ const AddRestaurants = () => {
 					],
 				},
 			});
+
 			setName("");
 			setDescription("");
 		},
+		refetchQueries: [{ query: GET_CATEGORIES }],
 	});
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		createRestaurant();
+	};
+
+	const checkboxChange = (categoryId) => {
+		console.log(categories);
+		if (categories.includes(categoryId)) {
+			setCategories(categories.filter((category) => category !== categoryId));
+		} else setCategories([...categories, categoryId]);
 	};
 
 	return (
@@ -52,7 +65,20 @@ const AddRestaurants = () => {
 						value={description}
 						onChange={(e) => setDescription(e.target.value)}
 					/>
-					<button className="btn red">Add Category</button>
+					{data &&
+						data.categories.map((category) => (
+							<p>
+								<label>
+									<input
+										type="checkbox"
+										onChange={() => checkboxChange(category.id)}
+									/>
+									<span>{category.name}</span>
+								</label>
+							</p>
+						))}
+
+					<button className="btn red">Add Restaurant</button>
 				</form>
 			</div>
 		</div>
