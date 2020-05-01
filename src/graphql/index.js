@@ -28,6 +28,17 @@ export const CREATE_CATEGORY = gql`
 	}
 `;
 
+export const DELETE_CATEGORY = gql`
+	mutation deleteCategory($id: ID!) {
+		deleteCategory(input: { where: { id: $id } }) {
+			category {
+				name
+				id
+			}
+		}
+	}
+`;
+
 export const GET_RESTAURANTS = gql`
 	query {
 		restaurants {
@@ -43,9 +54,19 @@ export const GET_RESTAURANTS = gql`
 `;
 
 export const CREATE_RESTAURANT = gql`
-	mutation createRestaurant($name: String!, $description: String!) {
+	mutation createRestaurant(
+		$name: String!
+		$description: String!
+		$categories: [ID]
+	) {
 		createRestaurant(
-			input: { data: { name: $name, description: $description } }
+			input: {
+				data: {
+					name: $name
+					description: $description
+					categories: $categories
+				}
+			}
 		) {
 			restaurant {
 				id
